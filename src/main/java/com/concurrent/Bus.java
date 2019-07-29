@@ -8,6 +8,7 @@ public class Bus implements Runnable{
     public void run(){
         try {
             Main.mutex.acquire();
+            System.out.println("Bus - " + Long.toString(Thread.currentThread().getId()) + " is arrived");
             n = Math.min(Main.waiting,50);
             for(int i =0; i < n ;i++){
                 Main.bus.release();
@@ -24,6 +25,6 @@ public class Bus implements Runnable{
     }
 
     public void depart(){
-
+        System.out.println("Bus - " + Long.toString(Thread.currentThread().getId())+  " is leaving");
     }
 }

@@ -8,9 +8,10 @@ public class Rider implements Runnable{
         try {
             Main.mutex.acquire();
             Main.waiting += 1;
+            System.out.println("Rider - "+ Long.toString(Thread.currentThread().getId()) + " came to the bus halt");
             Main.mutex.release();
 
-            Main.bus.wait();
+            Main.bus.acquire();
             board();
             Main.boarded.release();
 
@@ -20,7 +21,7 @@ public class Rider implements Runnable{
     }
 
     public void board(){
-
+        System.out.println("Rider - " + Long.toString(Thread.currentThread().getId())+  " boarded to the bus");
     }
 }
 
